@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FaSearch, FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 
 type Props = {
     showSearchBar: boolean

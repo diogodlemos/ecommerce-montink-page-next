@@ -14,9 +14,10 @@ const ProductDetail = ({ params }: Params) => {
     const { id } = use(params);
     const productId = Number(id);
     const product = products.find(p => p.id === productId);
+    const initialImage = product?.colors[0].images[0] || "";
+    const [selectedImage, setSelectedImage] = useState(initialImage);
+    
     if (!product) return notFound();
-    const [selectedImage, setSelectedImage] = useState(product.colors[0].images[0]);
-
 
     return (
         <div>
