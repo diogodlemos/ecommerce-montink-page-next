@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function ProductCard({ product }: Props) {
-    const [selectedImage, setSelectedImage] = useState(product.colors[0].images[0]);
+    const [selectedImage] = useState(product.colors[0].images[0]);
 
     const router = useRouter()
 
@@ -33,21 +33,6 @@ export default function ProductCard({ product }: Props) {
                         className="object-contain rounded-lg"
                     />
                 </div>
-
-                {/* <div className="flex gap-2 mb-4">
-                    {product.colors[0].images.map((img, index) => (
-                        <button key={index} onClick={() => setSelectedImage(img)}>
-                            <Image
-                                src={img}
-                                alt={`Miniatura ${index + 1}`}
-                                width={60}
-                                height={60}
-                                className={`border rounded-md ${selectedImage === img ? "border-blue-500" : "border-gray-300"
-                                    }`}
-                            />
-                        </button>
-                    ))}
-                </div> */}
 
                 <section>
                     <h1 className="font-bold text-lg mb-2">{product.name}</h1>
