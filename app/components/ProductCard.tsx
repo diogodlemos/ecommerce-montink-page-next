@@ -14,23 +14,21 @@ export default function ProductCard({ product }: Props) {
     const router = useRouter()
 
     const handleClick = (product: Product) => {
-        console.log("clicou");
-        
         router.push(`/product/${product.id}`)
     };
 
     return (
         <div
-            className="p-8 m-4 w-[20vw] bg-white hover:bg-sky-50 hover:cursor-pointer rounded-lg"
+            className="p-8 m-1 sm:m-4 w-[250px] sm:w-[20vw] bg-white hover:bg-sky-50 hover:cursor-pointer rounded-lg"
             onClick={() => handleClick(product)}
         >
             <div className="flex flex-col items-start">
-                <div className="relative w-[10vw] h-auto aspect-[4/3]">
+                <div className="relative w-[200px] sm:w-[220px] h-auto aspect-[4/3]">
                     <Image
                         src={selectedImage}
                         alt="Imagem principal"
                         fill
-                        className="object-contain rounded-lg"
+                        className="rounded-lg"
                     />
                 </div>
 

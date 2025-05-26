@@ -22,10 +22,10 @@ const ProductDetail = ({ params }: Params) => {
     return (
         <div>
             <Header showSearchBar={false}/>
-            <div className=" flex m-25">
-                <div className="flex flex-row items-center justify-center">
+            <div className="flex m-[25px] bg-white rounded-lg">
+                <div className="flex flex-col sm:flex-row items-center justify-center">
                     <div className="flex flex-col justify-center items-center">
-                        <div className="relative w-[35vw] h-auto aspect-[4/3]">
+                        <div className="relative sm:w-[35vw] w-[300px] h-auto aspect-[4/3]">
                             <Image
                                 src={selectedImage}
                                 alt="Imagem principal"
@@ -50,7 +50,7 @@ const ProductDetail = ({ params }: Params) => {
                         </div>
                     </div>
 
-                    <section className="w-[35vw]">
+                    <section className="w-[200px] sm:w-[35vw]">
                         <h1 className="font-bold text-lg mb-2">{product.name}</h1>
                         <p className="text-sm mb-2">{product.description}</p>
                         <div className="flex flex-row justify-center items-center ">

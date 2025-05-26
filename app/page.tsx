@@ -9,7 +9,7 @@ export default function Home() {
     <main>
       <Header showSearchBar={true} />
       <div className='flex flex-col justify-center items-start m-8'>
-        <div className='flex m-4 w-full flex-wrap'>
+        <div className='flex flex-col sm:flex-row m-4 w-full flex-wrap'>
           {products.map((product: Product) => (
             <ProdutoCard key={product.id} product={product} />
           ))}
