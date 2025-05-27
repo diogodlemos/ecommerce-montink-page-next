@@ -177,7 +177,7 @@ export const products: Product[] = [
         images: [
           "/assets/adidasBranco.png",
         ],
-      },      
+      },
       {
         name: "Azul Claro",
         colorClass: "bg-sky-300",
@@ -187,4 +187,54 @@ export const products: Product[] = [
       },
     ],
   },
+  {
+    id: 7,
+    name: "Tênis Puma Flyer Runner V2 Masculino",
+    price: 189.90,
+    description:
+      "Modelo esportivo leve e com excelente ventilação, ideal para treinos diários e corridas leves.",
+    sizes: ["38", "39", "40", "41", "42", "43"],
+    colors: [
+      {
+        name: "Preto com Branco",
+        colorClass: "bg-neutral-800",
+        images: ["/assets/pumaPretoBranco.png"],
+      },
+      {
+        name: "Azul Marinho",
+        colorClass: "bg-blue-800",
+        images: ["/assets/pumaAzul.png"],
+      },
+      {
+        name: "Verde Militar",
+        colorClass: "bg-green-700",
+        images: ["/assets/pumaVerde.png"],
+      },
+    ],
+  },
+  {
+    id: 8,
+    name: "Tênis New Balance 237 Masculino",
+    price: 229.90,
+    description:
+      "Estilo retrô com conforto moderno. O New Balance 237 une visual clássico com materiais atualizados para o dia a dia.",
+    sizes: ["37", "38", "39", "40", "41", "42", "43"],
+    colors: [
+      {
+        name: "Cinza",
+        colorClass: "bg-gray-400",
+        images: ["/assets/nbCinza.png"],
+      },
+      {
+        name: "Azul e Vermelho",
+        colorClass: "bg-red-400",
+        images: ["/assets/nbLaranja.png"],
+      },
+      {
+        name: "Preto com Branco",
+        colorClass: "bg-black",
+        images: ["/assets/nbVinho.png"],
+      },
+    ],
+  }
 ];

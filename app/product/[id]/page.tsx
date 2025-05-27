@@ -3,7 +3,7 @@ import Header from "@/app/components/Header"
 import { products } from "@/src/data/Products";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import viaCepService from "@/app/services/cep/viaCepService";
 import { Address } from '@/src/types/Address';
 
@@ -21,8 +21,60 @@ const ProductDetail = ({ params }: Params) => {
     const [selectedImage, setSelectedImage] = useState(initialImage);
     const [cep, setCep] = useState('');
     const [address, setAddress] = useState<Address | null>(null)
+    const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
     if (!product) return notFound();
+
+
+    useEffect(() => {
+        const productInfo = localStorage.getItem(`products/${productId}`);
+        if (!productInfo) return;
+
+        const parsedProduct = JSON.parse(productInfo);
+        const now = Date.now();
+
+        const getValidValue = (key: string) => {
+            const expiresAt = parsedProduct[`${key}_expiresAt`];
+            if (expiresAt && now > expiresAt) {
+                // Remove valor expirado
+                delete parsedProduct[key];
+                delete parsedProduct[`${key}_expiresAt`];
+                return null;
+            }
+            return parsedProduct[key] ?? null;
+        };
+
+        const image = getValidValue('image');
+        const size = getValidValue('size');
+        const cep = getValidValue('cep');
+        const address = getValidValue('address');
+
+        if (image) setSelectedImage(image);
+        if (size) setSelectedSize(size);
+        if (cep) setCep(cep);
+        if (address) setAddress(address);
+
+        // Atualiza o localStorage com valores expirados removidos (opcional, mas recomendado)
+        localStorage.setItem(`products/${productId}`, JSON.stringify(parsedProduct));
+    }, []);
+
+
+    const setLocalStorageItem = (nameProperty: string, valueProperty: any) => {
+        const now = new Date();
+        const expiresAt = now.getTime() + 15 * 60 * 1000;
+
+        const existing = localStorage.getItem(`products/${productId}`);
+        const parsedProduct = existing ? JSON.parse(existing) : {};
+
+        const newData = {
+            ...parsedProduct,
+            [nameProperty]: valueProperty,
+            [`${nameProperty}_expiresAt`]: expiresAt,
+        };
+
+        localStorage.setItem(`products/${productId}`, JSON.stringify(newData));
+    };
+
 
     const handleChangeCep = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -33,6 +85,7 @@ const ProductDetail = ({ params }: Params) => {
         };
 
         setCep(value)
+        setLocalStorageItem("cep", value)
     }
 
     const handleVerificationCep = async () => {
@@ -40,8 +93,15 @@ const ProductDetail = ({ params }: Params) => {
             const response = await viaCepService.findCepToValidation(cep);
             if (response) {
                 setAddress(response.data);
+                setLocalStorageItem("address", response.data)
             }
         }
+    };
+
+    const handleSelectSize = (event: React.MouseEvent<HTMLButtonElement>) => {
+        const size = event.currentTarget.innerText;
+        setSelectedSize(size);
+        setLocalStorageItem("size", size)
     };
 
 
@@ -63,7 +123,7 @@ const ProductDetail = ({ params }: Params) => {
                         <h2>Cor do produto:</h2>
                         <div className="flex gap-2 mb-4">
                             {product.colors.flatMap(({ images }) => images).map((img, index) => (
-                                <button key={index} onClick={() => setSelectedImage(img)}>
+                                <button key={index} onClick={() => { setSelectedImage(img); setLocalStorageItem("image", img) }}>
                                     <Image
                                         src={img}
                                         alt={`Miniatura ${index + 1}`}
@@ -83,8 +143,9 @@ const ProductDetail = ({ params }: Params) => {
                         <div className="flex flex-row justify-center items-center ">
                             {product.sizes
                                 .map((size, index) => <button
-                                    className="mr-2 w-40 h-10 bg-sky-50 rounded-full"
-                                    key={index}>{size}
+                                    className={`mr-2 w-40 h-10 bg-sky-50 rounded-full border rounded-md ${selectedSize === size ? 'border-blue-500' : 'border-gray-300'} hover:bg-blue-600 hover:text-white transition`}
+                                    key={index}
+                                    onClick={handleSelectSize}>{size}
                                 </button>)}
                         </div>
 
@@ -98,7 +159,8 @@ const ProductDetail = ({ params }: Params) => {
                                 pattern="\d{5}-?\d{3}"
                                 maxLength={9}
                                 required
-                                className="w-[150px] p-2 mt-2"
+                                className="w-[150px] p-2 mt-2 mb-2"
+                                value={cep}
                                 onChange={handleChangeCep}
                             />
                             <button
