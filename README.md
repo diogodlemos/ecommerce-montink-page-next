@@ -2,6 +2,10 @@
 
 Este projeto é uma aplicação de e-commerce voltada para a venda de **calçados (tênis)**, desenvolvida com **Next.js 15** e **TypeScript**. Ele simula a navegação em uma loja online com foco na experiência do usuário e boas práticas modernas de frontend.
 
+
+🔗 **Acesse a versão online do projeto:**  
+[![Deploy](https://img.shields.io/badge/Live%20Demo-Vercel-black?logo=vercel)](https://ecommerce-montink-page-next-dna7.vercel.app/)
+
 ---
 
 ## 🎥 Demonstração
