@@ -24,11 +24,6 @@ const ProductDetail = ({ params }: Params) => {
 
     if (!product) return notFound();
 
-    const handleChangeColor = (images: string[]) => {
-        console.log(images);
-        setSelectedImage(images[0])
-    }
-
     const handleChangeCep = (e: React.ChangeEvent<HTMLInputElement>) => {
 
         let value = e.target.value.replace(/\D/g, "");
