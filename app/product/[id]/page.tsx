@@ -36,10 +36,14 @@ const ProductDetail = ({ params }: Params) => {
     }
 
     const handleVerificationCep = async () => {
-        console.log("cep", cep);
-        const response = cep && await viaCepService.findCepToValidation(cep);
-        response && setAddress(response.data)
-    }
+        if (cep) {
+            const response = await viaCepService.findCepToValidation(cep);
+            if (response) {
+                setAddress(response.data);
+            }
+        }
+    };
+
 
     return (
         <div>
@@ -83,7 +87,7 @@ const ProductDetail = ({ params }: Params) => {
                                     key={index}>{size}
                                 </button>)}
                         </div>
-                        
+
                         <div className="flex flex-col mb-2 mt-2">
                             <label htmlFor="cep">CEP:</label>
                             <input
