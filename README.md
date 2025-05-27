@@ -17,7 +17,7 @@ Este projeto é uma aplicação de e-commerce voltada para a venda de **calçado
 ## 📄 Funcionalidades principais
 
 - ✅ **Página inicial com lista de produtos**  
-  A página principal exibe um catálogo de produtos em forma de **cards** clicáveis. Cada card representa um tênis com imagem e nome, e ao clicar, o usuário é redirecionado para uma **página de detalhes do produto**.
+  A página inicial exibe um catálogo de produtos em forma de **cards** clicáveis. Cada card representa um tênis com imagem e nome, e ao clicar, o usuário é redirecionado para uma **página de detalhes do produto**.
 
 - ✅ **Página de detalhes do produto**  
   Ao acessar a página de um produto específico, os seguintes requisitos são atendidos:
