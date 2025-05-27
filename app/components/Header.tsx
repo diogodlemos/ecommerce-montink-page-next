@@ -3,8 +3,16 @@ import { FaShoppingCart } from "react-icons/fa";
 
 type Props = {
   showSearchBar: boolean;
+  onChangeFilterText?: (text: string) => void;
 };
-const Header = ({ showSearchBar }: Props) => {
+
+const Header = ({ showSearchBar, onChangeFilterText }: Props) => {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {    
+    if (onChangeFilterText) {      
+      onChangeFilterText(event.target.value);
+    }
+  };
+
   return (
     <div>
       <header className="w-full bg-sky-500 h-[80px] sm:h-[120px] flex flex-col sm:flex-row justify-between items-center p-4">
@@ -27,6 +35,7 @@ const Header = ({ showSearchBar }: Props) => {
                 type="text"
                 placeholder="Buscar produto..."
                 className="w-full pl-2 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                onChange={handleSearchChange}
               />
             </div>
           )}
