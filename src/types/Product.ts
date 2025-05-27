@@ -6,6 +6,7 @@ export type Product = {
   sizes: (string | number)[];
   colors: {
     name: string;
+    colorClass: string,
     images: string[];
   }[];
 };

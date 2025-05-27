@@ -7,7 +7,7 @@ type Props = {
 const Header = ({ showSearchBar }: Props) => {
   return (
     <div>
-      <header className="w-full bg-sky-500 h-[60px] sm:h-[120px] flex flex-col sm:flex-row justify-between items-center p-4">
+      <header className="w-full bg-sky-500 h-[80px] sm:h-[120px] flex flex-col sm:flex-row justify-between items-center p-4">
         <div className="flex items-center mb-4 sm:mb-0">
           <Image
             src="/logo.png"

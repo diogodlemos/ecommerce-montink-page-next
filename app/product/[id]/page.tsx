@@ -4,6 +4,9 @@ import { products } from "@/src/data/Products";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { use, useState } from "react";
+import viaCepService from "@/app/services/cep/viaCepService";
+import { Address } from '@/src/types/Address';
+
 
 type Params = {
     params: Promise<{ id: string }>
@@ -16,12 +19,36 @@ const ProductDetail = ({ params }: Params) => {
     const product = products.find(p => p.id === productId);
     const initialImage = product?.colors[0].images[0] || "";
     const [selectedImage, setSelectedImage] = useState(initialImage);
-    
+    const [cep, setCep] = useState('');
+    const [address, setAddress] = useState<Address | null>(null)
+
     if (!product) return notFound();
+
+    const handleChangeColor = (images: string[]) => {
+        console.log(images);
+        setSelectedImage(images[0])
+    }
+
+    const handleChangeCep = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+        let value = e.target.value.replace(/\D/g, "");
+
+        if (value.length > 5) {
+            value = value.slice(0, 5) + '-' + value.slice(5, 8);
+        };
+
+        setCep(value)
+    }
+
+    const handleVerificationCep = async () => {
+        console.log("cep", cep);
+        const response = cep && await viaCepService.findCepToValidation(cep);
+        response && setAddress(response.data)
+    }
 
     return (
         <div>
-            <Header showSearchBar={false}/>
+            <Header showSearchBar={false} />
             <div className="flex m-[25px] bg-white rounded-lg">
                 <div className="flex flex-col sm:flex-row items-center justify-center">
                     <div className="flex flex-col justify-center items-center">
@@ -35,7 +62,7 @@ const ProductDetail = ({ params }: Params) => {
                         </div>
 
                         <div className="flex gap-2 mb-4">
-                            {product.colors[0].images.map((img, index) => (
+                            {product.colors.flatMap(({ images }) => images).map((img, index) => (
                                 <button key={index} onClick={() => setSelectedImage(img)}>
                                     <Image
                                         src={img}
@@ -60,7 +87,40 @@ const ProductDetail = ({ params }: Params) => {
                                     key={index}>{size}
                                 </button>)}
                         </div>
-                        <h2 className="text-md font-semibold text-green-700">R$ {product.price}</h2>
+                        <div className="flex">
+                            {product.colors.map(({ colorClass, images }, index) => {
+                                return <div key={index} onClick={() => handleChangeColor(images)} className={`${colorClass} w-8 h-8 border-solid border-2 border-gray-700 rounded-full m-2`} />
+
+                            })}
+                        </div>
+                        <div className="flex flex-col mb-2 mt-2">
+                            <label htmlFor="cep">CEP:</label>
+                            <input
+                                type="text"
+                                id="cep"
+                                name="cep"
+                                placeholder="00000-000"
+                                pattern="\d{5}-?\d{3}"
+                                maxLength={9}
+                                required
+                                className="w-[150px] p-2 mt-2"
+                                onChange={handleChangeCep}
+                            />
+                            <button
+                                onClick={handleVerificationCep}
+                                className="bg-blue-600 text-white px-4 py-2 w-[150px] rounded hover:bg-blue-700 transition"
+                            >
+                                Verificar CEP
+                            </button>
+                            <div className="w-full flex flex-col text-xs text-blue-950 font-bold font-poppins mt-2 mb-2">
+                                <p>{`${address && address.logradouro ? address.logradouro : ''}`}</p>
+                                <p>{`${address && address.bairro ? address.bairro : ''}`}</p>
+                                <p>{`${address && address.localidade ? address.localidade : ''}`}</p>
+                                <p>{`${address && address.uf ? address.uf : ''}`}</p>
+                            </div>
+
+                        </div>
+                        <h2 className="text-md font-semibold text-green-700 pb-4">R$ {product.price}</h2>
                     </section>
                 </div>
             </div>
