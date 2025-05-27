@@ -61,6 +61,7 @@ const ProductDetail = ({ params }: Params) => {
                             />
                         </div>
 
+                        <h2>Cor do produto:</h2>
                         <div className="flex gap-2 mb-4">
                             {product.colors.flatMap(({ images }) => images).map((img, index) => (
                                 <button key={index} onClick={() => setSelectedImage(img)}>
@@ -87,12 +88,7 @@ const ProductDetail = ({ params }: Params) => {
                                     key={index}>{size}
                                 </button>)}
                         </div>
-                        <div className="flex">
-                            {product.colors.map(({ colorClass, images }, index) => {
-                                return <div key={index} onClick={() => handleChangeColor(images)} className={`${colorClass} w-8 h-8 border-solid border-2 border-gray-700 rounded-full m-2`} />
-
-                            })}
-                        </div>
+                        
                         <div className="flex flex-col mb-2 mt-2">
                             <label htmlFor="cep">CEP:</label>
                             <input
