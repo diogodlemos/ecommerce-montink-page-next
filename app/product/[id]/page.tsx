@@ -23,7 +23,6 @@ const ProductDetail = ({ params }: Params) => {
     const [address, setAddress] = useState<Address | null>(null)
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
-    if (!product) return notFound();
 
 
     useEffect(() => {
@@ -58,6 +57,9 @@ const ProductDetail = ({ params }: Params) => {
         // Atualiza o localStorage com valores expirados removidos (opcional, mas recomendado)
         localStorage.setItem(`products/${productId}`, JSON.stringify(parsedProduct));
     }, [productId]);
+
+    if (!product) return notFound();
+
 
 
     const setLocalStorageItem = (nameProperty: string, valueProperty: string | number | object | boolean) => {
