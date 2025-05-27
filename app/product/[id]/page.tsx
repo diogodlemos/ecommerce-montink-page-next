@@ -4,7 +4,7 @@ import { products } from "@/src/data/Products";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { use, useEffect, useState } from "react";
-import viaCepService from "@/app/services/cep/viaCepService";
+import findCepToValidation from "@/app/services/cep/viaCepService";
 import { Address } from '@/src/types/Address';
 
 
@@ -27,6 +27,7 @@ const ProductDetail = ({ params }: Params) => {
 
 
     useEffect(() => {
+        if(!productId) return;
         const productInfo = localStorage.getItem(`products/${productId}`);
         if (!productInfo) return;
 
@@ -56,10 +57,10 @@ const ProductDetail = ({ params }: Params) => {
 
         // Atualiza o localStorage com valores expirados removidos (opcional, mas recomendado)
         localStorage.setItem(`products/${productId}`, JSON.stringify(parsedProduct));
-    }, []);
+    }, [productId]);
 
 
-    const setLocalStorageItem = (nameProperty: string, valueProperty: any) => {
+    const setLocalStorageItem = (nameProperty: string, valueProperty: string | number | object | boolean) => {
         const now = new Date();
         const expiresAt = now.getTime() + 15 * 60 * 1000;
 
@@ -90,7 +91,7 @@ const ProductDetail = ({ params }: Params) => {
 
     const handleVerificationCep = async () => {
         if (cep) {
-            const response = await viaCepService.findCepToValidation(cep);
+            const response = await findCepToValidation(cep);
             if (response) {
                 setAddress(response.data);
                 setLocalStorageItem("address", response.data)

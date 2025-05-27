@@ -10,6 +10,4 @@ const findCepToValidation = async (cep: string) => {
     }
 }
 
-export default {
-    findCepToValidation
-}
+export default findCepToValidation;
