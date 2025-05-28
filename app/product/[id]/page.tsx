@@ -111,10 +111,10 @@ const ProductDetail = ({ params }: Params) => {
     return (
         <div>
             <Header showSearchBar={false} />
-            <div className="flex m-[25px] bg-white rounded-lg">
+            <div className="flex my-2 sm:m-[25px] bg-white rounded-lg">
                 <div className="flex flex-col sm:flex-row items-center justify-center">
                     <div className="flex flex-col justify-center items-center">
-                        <div className="relative sm:w-[35vw] w-[300px] h-auto aspect-[4/3]">
+                        <div className="relative sm:w-[35vw] w-[100vw] h-auto aspect-[4/3] mt-4">
                             <Image
                                 src={selectedImage}
                                 alt="Imagem principal"
@@ -123,7 +123,7 @@ const ProductDetail = ({ params }: Params) => {
                             />
                         </div>
 
-                        <h2>Cor do produto:</h2>
+                        <h2 className="text-xl font-bold m-2">Cor do produto:</h2>
                         <div className="flex gap-2 mb-4">
                             {product.colors.flatMap(({ images }) => images).map((img, index) => (
                                 <button key={index} onClick={() => { setSelectedImage(img); setLocalStorageItem("image", img) }}>
@@ -132,18 +132,17 @@ const ProductDetail = ({ params }: Params) => {
                                         alt={`Miniatura ${index + 1}`}
                                         width={60}
                                         height={60}
-                                        className={`border rounded-md ${selectedImage === img ? "border-blue-500" : "border-gray-300"
-                                            }`}
+                                        className={`border rounded-md ${selectedImage === img ? "border-blue-500" : "border-gray-300"} m-2`}
                                     />
                                 </button>
                             ))}
                         </div>
                     </div>
 
-                    <section className="w-[200px] sm:w-[35vw]">
+                    <section className="w-[90vw] sm:w-[35vw]">
                         <h1 className="font-bold text-lg mb-2">{product.name}</h1>
-                        <p className="text-sm mb-2">{product.description}</p>
-                        <div className="flex flex-row justify-center items-center ">
+                        <p className="text-sm my-2">{product.description}</p>
+                        <div className="flex flex-row justify-center items-center mx-2 my-6">
                             {product.sizes
                                 .map((size, index) => <button
                                     className={`mr-2 w-40 h-10 bg-sky-50 rounded-full border rounded-md ${selectedSize === size ? 'border-blue-500' : 'border-gray-300'} hover:bg-blue-600 hover:text-white transition`}

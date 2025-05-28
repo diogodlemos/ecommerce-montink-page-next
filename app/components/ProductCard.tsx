@@ -19,7 +19,7 @@ export default function ProductCard({ product }: Props) {
 
     return (
         <div
-            className="p-8 m-1 sm:m-4 w-[250px] sm:w-[20vw] bg-white hover:bg-sky-50 hover:cursor-pointer rounded-lg"
+            className="flex justify-center items-center p-8 my-2 sm:m-4 w-full sm:w-[20vw] bg-white hover:bg-sky-50 hover:cursor-pointer rounded-lg"
             onClick={() => handleClick(product)}
         >
             <div className="flex flex-col items-start">

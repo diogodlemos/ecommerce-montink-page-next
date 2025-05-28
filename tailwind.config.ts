@@ -26,6 +26,8 @@ export default {
     "bg-white"
   ],
 
+  darkMode: 'class',
+
   theme: {
     extend: {
       colors: {

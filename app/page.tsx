@@ -22,8 +22,8 @@ export default function Home() {
   return (
     <main>
       <Header showSearchBar={true} onChangeFilterText={onChangeFilterText}/>
-      <div className='flex flex-col justify-center items-start m-8'>
-        <div className='flex flex-col sm:flex-row m-4 w-full flex-wrap'>
+      <div className='flex flex-col justify-center items-center m-0 sm:m-8'>
+        <div className='flex flex-col sm:flex-row m-0 sm:m-4 w-full flex-wrap'>
           {productsItems.map((product: Product) => (
             <ProdutoCard key={product.id} product={product} />
           ))}
