@@ -26,9 +26,10 @@ const Header = ({ showSearchBar, onChangeFilterText }: Props) => {
           <Image
             src="/logo.png"
             alt="Imagem do Produto"
-            width={50}
-            height={50}
-            className="rounded-full pr-0 w-[50px] sm:w-[90px] h-auto aspect-square"
+            width={90}
+            height={90}
+            quality={75}
+            className="rounded-full sm:w-[90px] w-[50px]"
           />
           <h1 className="text-blue-950 text-4xl sm:text-4xl font-poppins font-bold pl-[40px]">
             Trackrise

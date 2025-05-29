@@ -28,6 +28,7 @@ export default function ProductCard({ product }: Props) {
                         src={selectedImage}
                         alt="Imagem principal"
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="rounded-lg"
                     />
                 </div>
@@ -35,7 +36,7 @@ export default function ProductCard({ product }: Props) {
                 <section>
                     <h1 className="font-bold text-2xl my-4">{product.name}</h1>
                     <p className="text-sm mb-2 text-xl my-2">{product.description}</p>
-                    <h2 className="text-md font-semibold text-green-700 pb-4 text-2xl my-4">R$ {Number(product.price).toFixed(2)}</h2>
+                    <h2 className="text-md font-semibold text-green-700 pb-4 text-2xl">R$ {Number(product.price).toFixed(2)}</h2>
                 </section>
             </div>
         </div>

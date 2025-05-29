@@ -26,7 +26,7 @@ const ProductDetail = ({ params }: Params) => {
 
 
     useEffect(() => {
-        if(!productId) return;
+        if (!productId) return;
         const productInfo = localStorage.getItem(`products/${productId}`);
         if (!productInfo) return;
 
@@ -119,6 +119,8 @@ const ProductDetail = ({ params }: Params) => {
                                 src={selectedImage}
                                 alt="Imagem principal"
                                 fill
+                                sizes="(max-width: 768px) 100vw, 35vw"
+                                quality={75}
                                 className="object-contain rounded-lg"
                             />
                         </div>
