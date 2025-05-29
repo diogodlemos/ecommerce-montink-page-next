@@ -29,6 +29,8 @@ const Header = ({ showSearchBar, onChangeFilterText }: Props) => {
             width={90}
             height={90}
             quality={75}
+            sizes="(max-width: 768px) 100vw, 35vw"
+            priority
             className="rounded-full sm:w-[90px] w-[50px]"
           />
           <h1 className="text-blue-950 text-4xl sm:text-4xl font-poppins font-bold pl-[40px]">

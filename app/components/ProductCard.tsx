@@ -30,6 +30,8 @@ export default function ProductCard({ product }: Props) {
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="rounded-lg"
+                        priority
+                        quality={75}
                     />
                 </div>
 

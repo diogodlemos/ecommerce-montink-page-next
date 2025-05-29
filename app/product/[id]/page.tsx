@@ -121,6 +121,7 @@ const ProductDetail = ({ params }: Params) => {
                                 fill
                                 sizes="(max-width: 768px) 100vw, 35vw"
                                 quality={75}
+                                priority
                                 className="object-contain rounded-lg"
                             />
                         </div>
@@ -134,6 +135,8 @@ const ProductDetail = ({ params }: Params) => {
                                         alt={`Miniatura ${index + 1}`}
                                         width={60}
                                         height={60}
+                                        sizes="(max-width: 768px) 100vw, 35vw"
+                                        priority
                                         className={`border rounded-md ${selectedImage === img ? "border-blue-500" : "border-gray-300"} m-2`}
                                     />
                                 </button>
