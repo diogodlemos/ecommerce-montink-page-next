@@ -19,7 +19,7 @@ export default function ProductCard({ product }: Props) {
 
     return (
         <div
-            className="flex justify-center items-center p-8 my-2 sm:m-4 w-full sm:w-[20vw] bg-white hover:bg-sky-50 hover:cursor-pointer rounded-lg"
+            className="flex justify-center items-center p-8 my-2 mx-4 sm:m-4 w-[93vw] sm:w-[20vw] bg-white hover:bg-sky-50 hover:cursor-pointer rounded-lg"
             onClick={() => handleClick(product)}
         >
             <div className="flex flex-col items-start">
@@ -33,9 +33,9 @@ export default function ProductCard({ product }: Props) {
                 </div>
 
                 <section>
-                    <h1 className="font-bold text-lg mb-2">{product.name}</h1>
-                    <p className="text-sm mb-2">{product.description}</p>
-                    <h2 className="text-md font-semibold text-green-700">R$ {product.price}</h2>
+                    <h1 className="font-bold text-2xl my-4">{product.name}</h1>
+                    <p className="text-sm mb-2 text-xl my-2">{product.description}</p>
+                    <h2 className="text-md font-semibold text-green-700 pb-4 text-2xl my-4">R$ {Number(product.price).toFixed(2)}</h2>
                 </section>
             </div>
         </div>

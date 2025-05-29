@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { FaShoppingCart } from "react-icons/fa";
 
 type Props = {
@@ -7,25 +8,30 @@ type Props = {
 };
 
 const Header = ({ showSearchBar, onChangeFilterText }: Props) => {
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {    
-    if (onChangeFilterText) {      
+  const router = useRouter();
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChangeFilterText) {
       onChangeFilterText(event.target.value);
     }
+  };
+
+  const handleClick = () => {
+    router.push("/");
   };
 
   return (
     <div>
       <header className="w-full bg-sky-500 h-[80px] sm:h-[120px] flex flex-col sm:flex-row justify-between items-center p-4">
-        <div className="flex items-center mb-4 sm:mb-0">
+        <div className="flex items-center mb-4 sm:mb-0" onClick={handleClick}>
           <Image
             src="/logo.png"
             alt="Imagem do Produto"
             width={50}
             height={50}
-            className="rounded-full pr-4"
+            className="rounded-full pr-0 w-[50px] sm:w-[90px] h-auto aspect-square"
           />
-          <h1 className="text-white text-xl sm:text-2xl font-poppins font-normal">
-            E-commerce Montink
+          <h1 className="text-blue-950 text-4xl sm:text-4xl font-poppins font-bold pl-[40px]">
+            Trackrise
           </h1>
         </div>
         <div className="hidden sm:flex flex-row justify-center items-center w-full sm:w-auto">
@@ -43,7 +49,7 @@ const Header = ({ showSearchBar, onChangeFilterText }: Props) => {
             aria-label="Carrinho de compras"
             className="relative flex justify-center items-center"
           >
-            <FaShoppingCart className="text-2xl text-white m-5" />
+            <FaShoppingCart className="text-5xl text-blue-950 m-5" />
           </button>
         </div>
       </header>

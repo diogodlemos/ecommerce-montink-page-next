@@ -111,7 +111,7 @@ const ProductDetail = ({ params }: Params) => {
     return (
         <div>
             <Header showSearchBar={false} />
-            <div className="flex my-2 sm:m-[25px] bg-white rounded-lg">
+            <div className="flex my-2 sm:m-[25px] bg-white rounded-lg mx-4 p-0">
                 <div className="flex flex-col sm:flex-row items-center justify-center">
                     <div className="flex flex-col justify-center items-center">
                         <div className="relative sm:w-[35vw] w-[100vw] h-auto aspect-[4/3] mt-4">
@@ -140,9 +140,9 @@ const ProductDetail = ({ params }: Params) => {
                     </div>
 
                     <section className="w-[90vw] sm:w-[35vw]">
-                        <h1 className="font-bold text-lg mb-2">{product.name}</h1>
-                        <p className="text-sm my-2">{product.description}</p>
-                        <div className="flex flex-row justify-center items-center mx-2 my-6">
+                        <h1 className="font-bold text-lg mb-2 w-[80%]">{product.name}</h1>
+                        <p className="text-sm my-2 w-[80%]">{product.description}</p>
+                        <div className="flex flex-row justify-center items-center mx-2 my-6 w-[80%]">
                             {product.sizes
                                 .map((size, index) => <button
                                     className={`mr-2 w-40 h-10 bg-sky-50 rounded-full border rounded-md ${selectedSize === size ? 'border-blue-500' : 'border-gray-300'} hover:bg-blue-600 hover:text-white transition`}
@@ -179,7 +179,7 @@ const ProductDetail = ({ params }: Params) => {
                             </div>
 
                         </div>
-                        <h2 className="text-md font-semibold text-green-700 pb-4">R$ {product.price}</h2>
+                        <h2 className="text-md font-semibold text-green-700 pb-4 text-2xl">R$ {Number(product.price).toFixed(2)}</h2>
                     </section>
                 </div>
             </div>
