@@ -114,7 +114,7 @@ const ProductDetail = ({ params }: Params) => {
             <div className="flex my-2 sm:m-[25px] bg-white rounded-lg mx-4 p-0">
                 <div className="flex flex-col sm:flex-row items-center justify-center">
                     <div className="flex flex-col justify-center items-center">
-                        <div className="relative sm:w-[35vw] w-[100vw] h-auto aspect-[4/3] mt-4">
+                        <div className="relative sm:w-[35vw] w-[92vw] h-auto aspect-[4/3] mt-4">
                             <Image
                                 src={selectedImage}
                                 alt="Imagem principal"
@@ -141,7 +141,7 @@ const ProductDetail = ({ params }: Params) => {
                         </div>
                     </div>
 
-                    <section className="w-[90vw] sm:w-[35vw]">
+                    <section className="w-[80vw] sm:w-[35vw]">
                         <h1 className="font-bold text-lg mb-2 w-[80%]">{product.name}</h1>
                         <p className="text-sm my-2 w-[80%]">{product.description}</p>
                         <div className="flex flex-row justify-center items-center mx-2 my-6 w-[80%]">
